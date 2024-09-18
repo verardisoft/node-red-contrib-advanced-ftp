@@ -22,14 +22,14 @@ module.exports = function (RED) {
     //Funzione per la configurazione
     function AdvancedFtpNode(n) {
         RED.nodes.createNode(this, n);
-        var credentials = RED.nodes.getCredentials(n.id) || {};
+
         this.options = {
             'host': n.host || 'localhost',
             'port': n.port || 21,
             'secure': n.secure || false,
             'secureOptions': n.secureOptions,
-            'user': n.user || 'anonymous',
-            'password': credentials.password || 'anonymous@',
+            'user': this.credentials.user || 'anonymous',
+            'password': this.credentials.password || 'anonymous@',
             'connTimeout': n.connTimeout || 10000,
             'pasvTimeout': n.pasvTimeout || 10000,
             'keepalive': n.keepalive || 10000
@@ -39,7 +39,12 @@ module.exports = function (RED) {
     //Registra il Node
     RED.nodes.registerType('advanced-ftp-config', AdvancedFtpNode, {
         credentials: {
-            password: { type: 'password' }
+            user: {
+                type: "text"
+            },
+            password: {
+                type: "password"
+            }
         }
     });
 
