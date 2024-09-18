@@ -397,15 +397,15 @@ limitations under the License.
       port: { value: '' },
       secure: { value: false },
       secureOptions: { value: '' },
-      user: { value: '' },
       connTimeout: { value: '' },
       pasvTimeout: { value: '' },
       keepalive: { value: '' },
       name : {value: ''}
     },
     credentials: {
-      password: { type: 'password', required: true },
-    },
+      user: {type: "text"},
+      password: {type: "password"}
+      },
     label: function () {
       return this.name || this.host
     }
